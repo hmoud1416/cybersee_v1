@@ -31,6 +31,13 @@ class ElasticsearchSettingsController extends Controller
 
         $this->updateEnv($data);
 
+        config([
+            'elasticsearch.host' => $data['host'],
+            'elasticsearch.port' => $data['port'],
+            'elasticsearch.username' => $data['username'],
+            'elasticsearch.password' => $data['password'],
+        ]);
+
         return redirect()->route('elasticsearch.settings.edit')->with('status', 'Elasticsearch settings updated.');
     }
 
@@ -52,7 +59,7 @@ class ElasticsearchSettingsController extends Controller
     {
         $envPath = base_path('.env');
         if (!File::exists($envPath)) {
-            return;
+            File::put($envPath, '');
         }
 
         $envContent = File::get($envPath);
