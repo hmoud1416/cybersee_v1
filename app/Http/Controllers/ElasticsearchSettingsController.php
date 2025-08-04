@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use App\Services\ElasticsearchService;
 
 class ElasticsearchSettingsController extends Controller
 {
@@ -11,24 +12,40 @@ class ElasticsearchSettingsController extends Controller
     {
         $settings = [
             'host' => config('elasticsearch.host'),
+            'port' => config('elasticsearch.port'),
             'username' => config('elasticsearch.username'),
             'password' => config('elasticsearch.password'),
         ];
 
-        return view('elasticsearch.settings', compact('settings'));
+        return view('elasticsearch.settings', compact('settings'))->with('activeTab', 'settings');
     }
 
     public function update(Request $request)
     {
         $data = $request->validate([
             'host' => 'required|string',
+            'port' => 'required|integer',
             'username' => 'nullable|string',
             'password' => 'nullable|string',
         ]);
 
         $this->updateEnv($data);
 
-        return redirect()->back()->with('status', 'Elasticsearch settings updated.');
+        return redirect()->route('elasticsearch.settings.edit')->with('status', 'Elasticsearch settings updated.');
+    }
+
+    public function test(ElasticsearchService $service)
+    {
+        $settings = [
+            'host' => config('elasticsearch.host'),
+            'port' => config('elasticsearch.port'),
+            'username' => config('elasticsearch.username'),
+            'password' => config('elasticsearch.password'),
+        ];
+
+        $ping = $service->ping();
+
+        return view('elasticsearch.settings', compact('settings', 'ping'))->with('activeTab', 'test');
     }
 
     protected function updateEnv(array $data)

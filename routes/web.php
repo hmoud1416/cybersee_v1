@@ -30,3 +30,6 @@ Route::post('/elasticsearch/indices', [ElasticsearchIndexController::class, 'sto
     ->name('elasticsearch.indices.store');
 Route::delete('/elasticsearch/indices/{index}', [ElasticsearchIndexController::class, 'destroy'])
     ->name('elasticsearch.indices.destroy');
+
+Route::get('/elasticsearch/test', [ElasticsearchSettingsController::class, 'test'])
+    ->name('elasticsearch.settings.test');
