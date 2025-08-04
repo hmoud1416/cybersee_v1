@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ElasticsearchSettingsController;
+use App\Http\Controllers\ElasticsearchDocumentController;
+
 use App\Http\Controllers\ElasticsearchStatusController;
 
 use App\Http\Controllers\ElasticsearchIndexController;
@@ -25,6 +27,13 @@ Route::get('/elasticsearch/settings', [ElasticsearchSettingsController::class, '
     ->name('elasticsearch.settings.edit');
 Route::post('/elasticsearch/settings', [ElasticsearchSettingsController::class, 'update'])
     ->name('elasticsearch.settings.update');
+
+Route::get('/elasticsearch/document', [ElasticsearchDocumentController::class, 'form'])
+    ->name('elasticsearch.document.form');
+Route::post('/elasticsearch/document', [ElasticsearchDocumentController::class, 'storeOrUpdate'])
+    ->name('elasticsearch.document.store');
+Route::delete('/elasticsearch/document', [ElasticsearchDocumentController::class, 'destroy'])
+    ->name('elasticsearch.document.destroy');
 
 Route::get('/elasticsearch/status', [ElasticsearchStatusController::class, 'index'])
     ->name('elasticsearch.status');
