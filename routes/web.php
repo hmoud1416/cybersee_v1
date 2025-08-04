@@ -22,3 +22,5 @@ Route::get('/elasticsearch/settings', [ElasticsearchSettingsController::class, '
     ->name('elasticsearch.settings.edit');
 Route::post('/elasticsearch/settings', [ElasticsearchSettingsController::class, 'update'])
     ->name('elasticsearch.settings.update');
+Route::get('/elasticsearch/test', [ElasticsearchSettingsController::class, 'test'])
+    ->name('elasticsearch.settings.test');
