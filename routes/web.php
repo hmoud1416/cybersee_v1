@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ElasticsearchSettingsController;
+use App\Http\Controllers\ElasticsearchStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,8 @@ Route::get('/elasticsearch/settings', [ElasticsearchSettingsController::class, '
     ->name('elasticsearch.settings.edit');
 Route::post('/elasticsearch/settings', [ElasticsearchSettingsController::class, 'update'])
     ->name('elasticsearch.settings.update');
+
+Route::get('/elasticsearch/status', [ElasticsearchStatusController::class, 'index'])
+    ->name('elasticsearch.status');
+Route::get('/elasticsearch/status/data', [ElasticsearchStatusController::class, 'data'])
+    ->name('elasticsearch.status.data');
