@@ -40,19 +40,21 @@
                         @csrf
                         <div class="mb-3">
                             <label class="form-label" for="host">Host</label>
-                            <input class="form-control" type="text" id="host" name="host" value="{{ old('host', $settings['host']) }}" required>
+                            <input class="form-control" type="text" id="host" name="host" value="{{ old('host', $settings['host']) }}" placeholder="localhost" required>
+                            <div class="form-text">Example: localhost or 127.0.0.1</div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="port">Port</label>
-                            <input class="form-control" type="number" id="port" name="port" value="{{ old('port', $settings['port']) }}" required>
+                            <input class="form-control" type="number" id="port" name="port" value="{{ old('port', $settings['port']) }}" placeholder="9200" required>
+                            <div class="form-text">Default: 9200</div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="username">Username</label>
-                            <input class="form-control" type="text" id="username" name="username" value="{{ old('username', $settings['username']) }}">
+                            <input class="form-control" type="text" id="username" name="username" value="{{ old('username', $settings['username']) }}" placeholder="elastic">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="password">Password</label>
-                            <input class="form-control" type="password" id="password" name="password" value="{{ old('password', $settings['password']) }}">
+                            <input class="form-control" type="password" id="password" name="password" value="{{ old('password', $settings['password']) }}" placeholder="secret">
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
