@@ -18,7 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/elasticsearch/settings', [ElasticsearchSettingsController::class, 'edit'])
-    ->name('elasticsearch.settings.edit');
-Route::post('/elasticsearch/settings', [ElasticsearchSettingsController::class, 'update'])
-    ->name('elasticsearch.settings.update');
+Route::prefix('elasticsearch')->name('elasticsearch.')->group(function () {
+    Route::get('/', fn () => redirect()->route('elasticsearch.connection'));
+    Route::get('/connection', [ElasticsearchSettingsController::class, 'edit'])->name('connection');
+    Route::post('/connection', [ElasticsearchSettingsController::class, 'update'])->name('connection.update');
+    Route::view('/indices', 'elasticsearch.indices')->name('indices');
+    Route::view('/search', 'elasticsearch.search')->name('search');
+    Route::view('/documents', 'elasticsearch.documents')->name('documents');
+    Route::view('/monitoring', 'elasticsearch.monitoring')->name('monitoring');
+});

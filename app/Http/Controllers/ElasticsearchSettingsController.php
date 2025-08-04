@@ -15,7 +15,7 @@ class ElasticsearchSettingsController extends Controller
             'password' => config('elasticsearch.password'),
         ];
 
-        return view('elasticsearch.settings', compact('settings'));
+        return view('elasticsearch.connection', compact('settings'));
     }
 
     public function update(Request $request)
