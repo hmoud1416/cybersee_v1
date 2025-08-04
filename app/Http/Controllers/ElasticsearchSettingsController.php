@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Artisan;
 use App\Services\ElasticsearchService;
 
 class ElasticsearchSettingsController extends Controller
@@ -30,6 +31,8 @@ class ElasticsearchSettingsController extends Controller
         ]);
 
         $this->updateEnv($data);
+
+        Artisan::call('config:clear');
 
         config([
             'elasticsearch.host' => $data['host'],
