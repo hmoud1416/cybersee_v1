@@ -13,7 +13,10 @@
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <span class="nav-link active">Elasticsearch</span>
+                        <span class="nav-link active">Settings</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('elasticsearch.indices.index') }}">Indices</a>
                     </li>
                 </ul>
             </div>

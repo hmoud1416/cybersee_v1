@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ElasticsearchSettingsController;
+use App\Http\Controllers\ElasticsearchIndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,10 @@ Route::get('/elasticsearch/settings', [ElasticsearchSettingsController::class, '
     ->name('elasticsearch.settings.edit');
 Route::post('/elasticsearch/settings', [ElasticsearchSettingsController::class, 'update'])
     ->name('elasticsearch.settings.update');
+
+Route::get('/elasticsearch/indices', [ElasticsearchIndexController::class, 'index'])
+    ->name('elasticsearch.indices.index');
+Route::post('/elasticsearch/indices', [ElasticsearchIndexController::class, 'store'])
+    ->name('elasticsearch.indices.store');
+Route::delete('/elasticsearch/indices/{index}', [ElasticsearchIndexController::class, 'destroy'])
+    ->name('elasticsearch.indices.destroy');
