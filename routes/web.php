@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ElasticsearchSettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/elasticsearch/settings', [ElasticsearchSettingsController::class, 'edit'])
+    ->name('elasticsearch.settings.edit');
+Route::post('/elasticsearch/settings', [ElasticsearchSettingsController::class, 'update'])
+    ->name('elasticsearch.settings.update');
