@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ElasticsearchSettingsController;
 use App\Http\Controllers\ElasticsearchDocumentController;
 
+use App\Http\Controllers\ElasticsearchStatusController;
+
 use App\Http\Controllers\ElasticsearchIndexController;
 
 /*
@@ -32,6 +34,11 @@ Route::post('/elasticsearch/document', [ElasticsearchDocumentController::class, 
     ->name('elasticsearch.document.store');
 Route::delete('/elasticsearch/document', [ElasticsearchDocumentController::class, 'destroy'])
     ->name('elasticsearch.document.destroy');
+
+Route::get('/elasticsearch/status', [ElasticsearchStatusController::class, 'index'])
+    ->name('elasticsearch.status');
+Route::get('/elasticsearch/status/data', [ElasticsearchStatusController::class, 'data'])
+    ->name('elasticsearch.status.data');
 
 Route::get('/elasticsearch/indices', [ElasticsearchIndexController::class, 'index'])
     ->name('elasticsearch.indices.index');
